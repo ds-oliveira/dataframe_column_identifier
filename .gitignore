@@ -1,0 +1,4 @@
+dist
+**_pycache_**
+build
+dataframe_column_identifier.egg-info
