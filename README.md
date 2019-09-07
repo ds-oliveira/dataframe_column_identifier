@@ -205,7 +205,7 @@ print(X_test.head(10))
 ### Methods
 - select_columns_by_values :
   
-  Returns the name of the Pandas DataFrame columns which are selected based on a matrix of values.
+  Returns the names of the Pandas DataFrame columns which are selected based on a matrix of values.
   
   ```dfci.select_columns_by_values(X, selected_values, n_validation_rows=100, verbose=1)```
 
@@ -229,7 +229,7 @@ print(X_test.head(10))
 
 - select_columns_KBest :
 
-  Returns the name of the Pandas DataFrame columns which are selected based on the KBest.get_support method's output.
+  Returns the names of the Pandas DataFrame columns which are selected based on the KBest.get_support method's output.
 
   ```dfci.select_columns_KBest(X, kbest_get_support_output, verbose=1)```
 
@@ -260,4 +260,4 @@ print(X_test.head(10))
     The DataFrame to be transformed (the Pandas DataFrame must have the columns that should be found).
 
 ### Attributes
-- selected_columns_ : Name of the given Pandas DataFrame columns, selected based on the given values, after the select_columns_* method execution.
+- selected_columns_ : Name of the given Pandas DataFrame columns which were selected based on the given values, after the select_columns_* method execution.
