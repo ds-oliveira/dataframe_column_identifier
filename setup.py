@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dataframe-column-identifier",
-    version="0.0.1",
+    version="0.0.2",
     author="Danilo Silva de Oliveira",
     author_email="danilooliveira28@hotmail.com",
     description="A light and useful package to find columns in a Dataframe by its values.",
