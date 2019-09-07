@@ -9,19 +9,21 @@ class DataFrameColumnIdentifier:
 
         Methods
         -------
-        selected_columns : Returns the name of the Pandas DataFrame columns which are selected based on a matrix of values.
+        select_columns_by_values : Returns the names of the Pandas DataFrame columns which are selected based on a matrix of values.
 
-        transform : Returns a new Pandas DataFrame with only the columns which were selected on the selected_columns method.
+        select_columns_KBest : Returns the names of the Pandas DataFrame columns which are selected based on the KBest.get_support method's output.
+
+        transform : Returns a new Pandas DataFrame with only the columns which were selected on the select_columns_* method.
 
         Attributes
         ----------
-        selected_columns_ : Name of the given Pandas DataFrame columns, selected based on the given values, after the select_columns method execution.
+        selected_columns_ : Name of the given Pandas DataFrame columns, selected based on the given values, after the select_columns_* method execution.
         """
         self.selected_columns_ = []
 
     def transform(self, X):
         """
-        Returns a new Pandas DataFrame with only the columns which were selected on the selected_columns method.
+        Returns a new Pandas DataFrame with only the columns which were selected on the select_columns_* method.
 
         transform(X)
 
@@ -32,11 +34,11 @@ class DataFrameColumnIdentifier:
         """
         return X[self.selected_columns_]
 
-    def select_columns(self, X, X_columns_values, n_validation_rows=1000, verbose=0):
+    def select_columns_by_values(self, X, X_columns_values, n_validation_rows=1000, verbose=0):
         """
-        Returns the name of the Pandas DataFrame columns which are selected based on a matrix of values.
+        Returns the names of the Pandas DataFrame columns which are selected based on a matrix of values.
 
-        select_columns(X, selected_values,verbose=1,n_validation_rows=100)
+        select_columns_by_values(X, X_columns_values, n_validation_rows=100, verbose=1)
 
         Parameters
         ----------
@@ -72,4 +74,32 @@ class DataFrameColumnIdentifier:
                             print('{} - Feature selected: {}'.format(len(self.selected_columns_),
                                                                      X.columns[X_column_index]))
                         break
-        return sorted(self.selected_columns_)
+        return self.selected_columns_
+
+    def select_columns_KBest(self, X, kbest_get_support_output, verbose=0):
+        """
+        Returns the names of the Pandas DataFrame columns which are selected based on the KBest.get_support method's output.
+
+        select_columns_KBest(X, kbest_get_support_output, verbose=0)
+
+        Parameters
+        ----------
+        X : Pandas DataFrame
+            The same DataFrame used in the KBest.fit_transform method.
+
+        kbest_get_support_output : boolean array 
+            The KBest.get_support method's output.
+
+        verbose :  int, optional (default=0)
+            It controls the verbosity when looking for the columns.
+        """
+        self.selected_columns_ = []
+        kbest_get_support_output_columns = range(len(kbest_get_support_output))
+
+        for column_index in kbest_get_support_output_columns:
+            if kbest_get_support_output[column_index] == True:
+                self.selected_columns_.append(X.columns[column_index])
+                if verbose == 1:
+                    print(
+                        '{} - Feature selected: {}'.format(len(self.selected_columns_), X.columns[column_index]))
+        return self.selected_columns_
