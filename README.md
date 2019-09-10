@@ -1,12 +1,12 @@
 # dataframe_column_identifier
-## `latest version: 0.0.3`
+## `latest version: 0.0.4`
 
 ## What is this?
 A light and useful package to find columns in a Dataframe by its values.
 
 ## Installing
 ```
-pip install dataframe-column-identifier==0.0.3
+pip install dataframe-column-identifier==0.0.4
 ```
 
 ## Importing
