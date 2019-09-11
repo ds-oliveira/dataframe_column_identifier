@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dataframe-column-identifier",
-    version="0.0.4",
+    version="0.0.5",
     author="Danilo Silva de Oliveira",
     author_email="danilooliveira28@hotmail.com",
     description="A light and useful package to find columns in a Dataframe by its values.",
@@ -17,6 +17,9 @@ setuptools.setup(
         'pandas',
         'numpy',
     ],
+    package_data={
+        'dataframe_column_identifier': ['*.md'],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
